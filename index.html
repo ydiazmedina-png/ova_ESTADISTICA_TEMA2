@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVA: Tablas de Frecuencia y Visualización de Datos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-50">
+<div class="flex min-h-screen flex-col">
+<div class="flex flex-1">
+
+    <!-- SIDEBAR -->
+    <aside class="w-64 bg-white shadow-lg flex-shrink-0 hidden md:flex md:flex-col">
+        <div class="p-4">
+            <div style="width:150px;height:150px;" class="p-2 mx-auto flex items-center justify-center bg-white rounded-full shadow-lg border-2 border-green-500 hover:shadow-green-400 transition-shadow">
+                <img src="img/logo.webp" alt="Logo" class="w-5/6 h-5/6 object-contain" loading="lazy"
+                     onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-green-700 font-bold text-xs text-center block p-2\'>Universidad de Córdoba</span>'">
+            </div>
+        </div>
+        <nav class="mt-6 flex-1">
+            <a href="#" class="sidebar-link active flex items-center py-3 px-6 font-medium text-slate-700" data-target="introduccion"><span class="mr-3 text-xl">🚀</span> Introducción</a>
+            <a href="#" class="sidebar-link flex items-center py-3 px-6 font-medium text-slate-700" data-target="objetivos"><span class="mr-3 text-xl">🎯</span> Objetivos</a>
+            <a href="#" class="sidebar-link flex items-center py-3 px-6 font-medium text-slate-700" data-target="contenido"><span class="mr-3 text-xl">📚</span> Contenido</a>
+            <a href="#" class="sidebar-link flex items-center py-3 px-6 font-medium text-slate-700" data-target="actividades"><span class="mr-3 text-xl">✍️</span> Actividades</a>
+            <a href="#" class="sidebar-link flex items-center py-3 px-6 font-medium text-slate-700" data-target="evaluacion"><span class="mr-3 text-xl">✔️</span> Evaluación</a>
+            <a href="#" class="sidebar-link flex items-center py-3 px-6 font-medium text-slate-700" data-target="recursos"><span class="mr-3 text-xl">📖</span> Recursos</a>
+            <a href="#" class="sidebar-link flex items-center py-3 px-6 font-medium text-slate-700" data-target="bibliografia"><span class="mr-3 text-xl">📚</span> Bibliografía</a>
+        </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="flex-1 p-4 sm:p-6 md:p-10 bg-gray-50">
+
+        <!-- Mobile header -->
+        <div class="md:hidden mb-6 flex flex-col items-center">
+            <div style="width:100px;height:100px;" class="p-2 flex items-center justify-center bg-white rounded-full shadow-lg mb-2">
+                <img src="img/logo.webp" alt="Logo" class="w-5/6 h-5/6 object-contain" loading="lazy"
+                     onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-green-700 font-bold text-xs\'>UNICOR</span>'">
+            </div>
+            <select id="mobile-nav" class="w-full mt-2 p-2 border rounded-md bg-white shadow-sm">
+                <option value="introduccion">Introducción</option>
+                <option value="objetivos">Objetivos</option>
+                <option value="contenido">Contenido</option>
+                <option value="actividades">Actividades</option>
+                <option value="evaluacion">Evaluación</option>
+                <option value="recursos">Recursos</option>
+                <option value="bibliografia">Bibliografía</option>
+            </select>
+        </div>
+
+        <!-- ══ INTRODUCCIÓN ══ -->
+        <div id="introduccion" class="content-pane active">
+            <h2 class="text-2xl sm:text-3xl font-bold text-green-800 mb-4">Tablas de Frecuencia y Visualización de Datos</h2>
+            <p class="text-slate-700 leading-relaxed mb-4">
+                Los datos en bruto rara vez comunican algo por sí solos. Un archivo con miles de registros de tiempos de respuesta, errores o sesiones de usuarios resulta ilegible sin un proceso previo de organización. Ese es precisamente el propósito de las tablas de frecuencia: condensar grandes volúmenes de datos en resúmenes estructurados que muestran cuántas veces ocurre cada valor o categoría.
+            </p>
+            <p class="text-slate-700 leading-relaxed mb-4">
+                La tabla de frecuencias es el puente entre los datos crudos y su interpretación. A partir de ella se construyen las visualizaciones: gráficos de barras y circulares para variables cualitativas, e histogramas, polígonos de frecuencia y ojivas para variables cuantitativas. Elegir el gráfico correcto no es una decisión estética sino técnica, pues depende del tipo de variable y de su escala de medición.
+            </p>
+
+            <div class="mt-4 p-4 bg-green-50 border-l-4 border-green-700 rounded-r-lg">
+                <p class="text-green-900">En el desarrollo de software, la visualización de datos es una competencia cotidiana: los dashboards de monitoreo muestran histogramas de latencia, los reportes de calidad presentan gráficos de barras con errores por módulo, y las herramientas de analítica resumen el comportamiento de los usuarios en distribuciones de frecuencia.</p>
+            </div>
+
+            <!-- Voz -->
+            <div class="speech-controls p-3 bg-green-100 rounded-lg flex items-center flex-wrap gap-2 mt-4" data-target="introduccion">
+                <button class="play-btn bg-green-700 hover:bg-green-800 text-white font-medium py-1 px-4 rounded-full flex items-center">▶️ Leer</button>
+                <button class="pause-btn bg-amber-600 hover:bg-amber-700 text-white font-medium py-1 px-4 rounded-full flex items-center" disabled>⏸️ Pausar</button>
+                <button class="stop-btn bg-red-600 hover:bg-red-700 text-white font-medium py-1 px-4 rounded-full flex items-center" disabled>⏹️ Detener</button>
+                <div class="flex items-center ml-2">
+                    <label class="text-sm text-green-800 mr-2">Velocidad:</label>
+                    <input type="range" class="speech-rate" min="0.5" max="2" step="0.1" value="1">
+                </div>
+            </div>
+
+            <!-- Video -->
+            <div class="mt-8 bg-white rounded-xl shadow-md p-4 border border-green-200" style="max-width:780px;margin-left:auto;margin-right:auto;">
+                <h3 class="text-base font-bold text-green-700 mb-3 text-center">🎬 Video introductorio</h3>
+                <div class="ratio-16x9 rounded-lg overflow-hidden video-embed">
+                   <iframe src="https://www.youtube.com/embed/jMC1p_CV170"
+    title="Tablas de frecuencia y gráficos estadísticos"
+    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+    style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══ OBJETIVOS ══ -->
+        <div id="objetivos" class="content-pane">
+            <h2 class="text-2xl sm:text-3xl font-bold text-green-800 mb-6">Objetivos de aprendizaje</h2>
+            <ul class="space-y-4">
+                <li class="flex items-start p-4 bg-white rounded-lg shadow-sm border-l-4 border-green-600"><span class="text-2xl mr-3">📋</span><span><strong>Construir</strong> tablas de distribución de frecuencias para variables cualitativas y cuantitativas, calculando frecuencias absolutas, relativas y acumuladas.</span></li>
+                <li class="flex items-start p-4 bg-white rounded-lg shadow-sm border-l-4 border-green-600"><span class="text-2xl mr-3">📐</span><span><strong>Organizar</strong> datos cuantitativos continuos en intervalos de clase aplicando la regla de Sturges y el cálculo de amplitud de clase.</span></li>
+                <li class="flex items-start p-4 bg-white rounded-lg shadow-sm border-l-4 border-green-600"><span class="text-2xl mr-3">🔍</span><span><strong>Seleccionar</strong> el gráfico estadístico apropiado según el tipo de variable y su escala de medición.</span></li>
+                <li class="flex items-start p-4 bg-white rounded-lg shadow-sm border-l-4 border-green-600"><span class="text-2xl mr-3">📊</span><span><strong>Construir</strong> gráficos de barras, circulares, histogramas, polígonos de frecuencia y ojivas a partir de una tabla de frecuencias.</span></li>
+                <li class="flex items-start p-4 bg-white rounded-lg shadow-sm border-l-4 border-green-600"><span class="text-2xl mr-3">🧭</span><span><strong>Interpretar y justificar</strong> conclusiones a partir de tablas y gráficos, evitando prácticas de visualización engañosas.</span></li>
+            </ul>
+            <div class="speech-controls p-3 bg-green-100 rounded-lg flex items-center flex-wrap gap-2 mt-6" data-target="objetivos">
+                <button class="play-btn bg-green-700 hover:bg-green-800 text-white font-medium py-1 px-4 rounded-full flex items-center">▶️ Leer</button>
+                <button class="pause-btn bg-amber-600 hover:bg-amber-700 text-white font-medium py-1 px-4 rounded-full flex items-center" disabled>⏸️ Pausar</button>
+                <button class="stop-btn bg-red-600 hover:bg-red-700 text-white font-medium py-1 px-4 rounded-full flex items-center" disabled>⏹️ Detener</button>
+                <div class="flex items-center ml-2">
+                    <label class="text-sm text-green-800 mr-2">Velocidad:</label>
+                    <input type="range" class="speech-rate" min="0.5" max="2" step="0.1" value="1">
+                </div>
+            </div>
+        </div>
+
+        <!-- ══ CONTENIDO ══ -->
+        <div id="contenido" class="content-pane">
+            <h2 class="text-2xl sm:text-3xl font-bold text-green-800 mb-4">Desarrollo del Contenido</h2>
+
+            <!-- PESTAÑAS PRINCIPALES -->
+            <div class="flex flex-wrap gap-2 mb-4">
+                <button onclick="showMainTab('tab-tablas')" id="main-tab-tablas" class="main-tab-btn px-5 py-3 text-base font-semibold rounded-full border-2 border-green-700 bg-green-700 text-white transition-all shadow-sm">Tablas de Frecuencia</button>
+                <button onclick="showMainTab('tab-agrupados')" id="main-tab-agrupados" class="main-tab-btn px-5 py-3 text-base font-semibold rounded-full border-2 border-green-200 bg-white text-slate-600 hover:text-green-700 transition-all shadow-sm">Datos Agrupados</button>
+                <button onclick="showMainTab('tab-graficos')" id="main-tab-graficos" class="main-tab-btn px-5 py-3 text-base font-semibold rounded-full border-2 border-green-200 bg-white text-slate-600 hover:text-green-700 transition-all shadow-sm">Gráficos Estadísticos</button>
+                <button onclick="showMainTab('tab-decision')" id="main-tab-decision" class="main-tab-btn px-5 py-3 text-base font-semibold rounded-full border-2 border-green-200 bg-white text-slate-600 hover:text-green-700 transition-all shadow-sm">Selección de Gráficos</button>
+            </div>
+
+            <!-- ══ TAB 1: TABLAS DE FRECUENCIA ══ -->
+            <div id="tab-tablas" class="main-tab-content bg-white border-2 border-green-300 rounded-xl p-5">
+                <div class="flex gap-2 mb-5 border-b border-slate-200 flex-wrap">
+                    <button onclick="showSub('tab1','definicion')" id="tab1-tab-definicion" class="sub-tab-tab1 px-4 py-2 rounded-t-lg text-sm font-semibold border-b-2 border-green-700 text-green-800 bg-green-50">Definición</button>
+                    <button onclick="showSub('tab1','ejemplo')" id="tab1-tab-ejemplo" class="sub-tab-tab1 px-4 py-2 rounded-t-lg text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-green-700">Ejemplo cualitativo</button>
+                </div>
+
+                <!-- TAB1: DEFINICIÓN -->
+                <div id="tab1-definicion" class="sub-tab1 space-y-5 text-slate-700">
+                    <p>Una tabla de distribución de frecuencias es un resumen estructurado que organiza los datos mostrando cada valor, categoría o intervalo, junto con el número de veces que aparece en el conjunto de datos.</p>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm border-collapse">
+                            <thead><tr class="bg-green-800 text-white"><th class="p-3 text-left rounded-tl-lg">Componente</th><th class="p-3 text-left">Símbolo</th><th class="p-3 text-left">Definición</th><th class="p-3 text-left rounded-tr-lg">Fórmula</th></tr></thead>
+                            <tbody>
+                                <tr class="bg-slate-50 border-b border-slate-200"><td class="p-3 font-semibold">Frecuencia absoluta</td><td class="p-3 font-mono">fᵢ</td><td class="p-3">Número de veces que aparece el valor</td><td class="p-3 text-xs">Se obtiene contando</td></tr>
+                                <tr class="bg-white border-b border-slate-200"><td class="p-3 font-semibold">Frecuencia relativa</td><td class="p-3 font-mono">hᵢ</td><td class="p-3">Proporción del total que representa</td><td class="p-3 font-mono text-xs">hᵢ = fᵢ / n</td></tr>
+                                <tr class="bg-slate-50 border-b border-slate-200"><td class="p-3 font-semibold">Frecuencia porcentual</td><td class="p-3 font-mono">%ᵢ</td><td class="p-3">Frecuencia relativa en porcentaje</td><td class="p-3 font-mono text-xs">%ᵢ = hᵢ × 100</td></tr>
+                                <tr class="bg-white border-b border-slate-200"><td class="p-3 font-semibold">Frec. absoluta acumulada</td><td class="p-3 font-mono">Fᵢ</td><td class="p-3">Suma de frecuencias absolutas hasta ese valor</td><td class="p-3 font-mono text-xs">Fᵢ = f₁+f₂+…+fᵢ</td></tr>
+                                <tr class="bg-slate-50"><td class="p-3 font-semibold">Frec. relativa acumulada</td><td class="p-3 font-mono">Hᵢ</td><td class="p-3">Suma de frecuencias relativas hasta ese valor</td><td class="p-3 font-mono text-xs">Hᵢ = Fᵢ / n</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="bg-amber-50 border-l-4 border-amber-600 rounded-r-xl p-4">
+                        <h4 class="font-bold text-amber-800 mb-1">Propiedades de verificación</h4>
+                        <p class="text-sm">La suma de todas las fᵢ debe ser igual a n; la suma de todas las hᵢ debe ser igual a 1; y la última frecuencia acumulada Fₖ debe coincidir con n.</p>
+                    </div>
+
+                    <h4 class="font-bold text-slate-700">Conceptos clave — haz clic para revelar</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="flip-card h-40 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-inner">
+                                <div class="flip-front card-institucional flex flex-col items-center justify-center p-4">
+                                    <p class="font-bold text-slate-700 text-center text-sm">¿Cuándo se listan valores individuales?</p>
+                                    <p class="text-xs text-slate-400 mt-2">Clic para revelar</p>
+                                </div>
+                                <div class="flip-back bg-green-800 rounded-xl flex flex-col items-center justify-center p-4">
+                                    <p class="text-white text-sm text-center">Para variables cualitativas y cuantitativas discretas con pocos valores distintos, la tabla lista cada categoría o valor de forma individual.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card h-40 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-inner">
+                                <div class="flip-front card-institucional-alt flex flex-col items-center justify-center p-4">
+                                    <p class="font-bold text-slate-700 text-center text-sm">¿Cuándo se agrupan en intervalos?</p>
+                                    <p class="text-xs text-slate-400 mt-2">Clic para revelar</p>
+                                </div>
+                                <div class="flip-back bg-blue-800 rounded-xl flex flex-col items-center justify-center p-4">
+                                    <p class="text-white text-sm text-center">Para variables cuantitativas continuas, o discretas con muchos valores distintos, los datos se agrupan en intervalos de clase.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card h-40 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-inner">
+                                <div class="flip-front card-institucional flex flex-col items-center justify-center p-4">
+                                    <p class="font-bold text-slate-700 text-center text-sm">¿Cuándo se usan acumuladas?</p>
+                                    <p class="text-xs text-slate-400 mt-2">Clic para revelar</p>
+                                </div>
+                                <div class="flip-back bg-green-800 rounded-xl flex flex-col items-center justify-center p-4">
+                                    <p class="text-white text-sm text-center">Las frecuencias acumuladas solo tienen sentido cuando la variable tiene orden: ordinal o cuantitativa. No se usan con variables nominales.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-xl p-5 border-l-4 border-slate-400">
+                        <h4 class="font-bold text-slate-700 mb-2">Importancia de la tabla de frecuencias</h4>
+                        <div class="space-y-1 text-sm">
+                            <p>Convierte miles de registros en un resumen legible sin perder la información esencial.</p>
+                            <p>Es el insumo directo para construir cualquier gráfico estadístico.</p>
+                            <p>Permite responder preguntas inmediatas: ¿cuál es la categoría más frecuente?, ¿qué proporción de datos está por debajo de cierto valor?</p>
+                            <p>En software es la base de los reportes de agregación: la consulta <span class="font-mono bg-white px-1 rounded border border-slate-200">GROUP BY ... COUNT(*)</span> de SQL construye exactamente una tabla de frecuencias.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB1: EJEMPLO -->
+                <div id="tab1-ejemplo" class="sub-tab1 hidden space-y-5 text-slate-700">
+                    <div class="card-institucional p-5">
+                        <h4 class="font-bold text-green-800 mb-2">Ejemplo — Tipo de error en 40 pruebas de una aplicación</h4>
+                        <p class="text-sm mb-3">Un equipo registró el tipo de error encontrado en 40 pruebas: Lógico, Sintaxis, Ejecución e Interfaz. El conteo produce la siguiente tabla:</p>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm border-collapse">
+                                <thead><tr class="bg-green-800 text-white"><th class="p-2">Tipo de error</th><th class="p-2">fᵢ</th><th class="p-2">hᵢ</th><th class="p-2">%ᵢ</th></tr></thead>
+                                <tbody>
+                                    <tr class="bg-slate-50 text-center"><td class="p-2 font-semibold text-left pl-3">Lógico</td><td class="p-2">18</td><td class="p-2">0.450</td><td class="p-2">45.0%</td></tr>
+                                    <tr class="bg-white text-center"><td class="p-2 font-semibold text-left pl-3">Sintaxis</td><td class="p-2">8</td><td class="p-2">0.200</td><td class="p-2">20.0%</td></tr>
+                                    <tr class="bg-slate-50 text-center"><td class="p-2 font-semibold text-left pl-3">Ejecución</td><td class="p-2">8</td><td class="p-2">0.200</td><td class="p-2">20.0%</td></tr>
+                                    <tr class="bg-white text-center"><td class="p-2 font-semibold text-left pl-3">Interfaz</td><td class="p-2">6</td><td class="p-2">0.150</td><td class="p-2">15.0%</td></tr>
+                                    <tr class="bg-green-100 font-bold text-center"><td class="p-2 text-left pl-3">Total</td><td class="p-2">40</td><td class="p-2">1.000</td><td class="p-2">100%</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mt-3 bg-green-50 rounded p-2 text-green-800 text-sm">Interpretación: casi la mitad de los errores (45%) son de tipo lógico, lo que orienta al equipo a reforzar las revisiones de lógica de negocio antes que la sintaxis.</div>
+                        <p class="text-xs text-slate-500 mt-2 italic">Nota: no se incluyen frecuencias acumuladas porque la variable es nominal.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ TAB 2: DATOS AGRUPADOS ══ -->
+            <div id="tab-agrupados" class="main-tab-content hidden bg-white border-2 border-green-300 rounded-xl p-5">
+                <div class="flex gap-2 mb-5 border-b border-slate-200 flex-wrap">
+                    <button onclick="showSub('tab2','procedimiento')" id="tab2-tab-procedimiento" class="sub-tab-tab2 px-4 py-2 rounded-t-lg text-sm font-semibold border-b-2 border-green-700 text-green-800 bg-green-50">Procedimiento (Sturges)</button>
+                    <button onclick="showSub('tab2','ejemplo')" id="tab2-tab-ejemplo" class="sub-tab-tab2 px-4 py-2 rounded-t-lg text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-green-700">Ejemplo completo</button>
+                </div>
+
+                <!-- TAB2: PROCEDIMIENTO -->
+                <div id="tab2-procedimiento" class="sub-tab2 space-y-5 text-slate-700">
+                    <p>Cuando la variable es continua o tiene muchos valores distintos, listar cada valor haría la tabla inmanejable. En ese caso los datos se agrupan en intervalos de clase, siguiendo este procedimiento:</p>
+
+                    <div class="image-container">
+                        <img src="img/figura1.png" alt="Proceso de construcción de una distribución de frecuencias" loading="lazy"
+                             onerror="this.parentElement.innerHTML='<p class=\'text-slate-400 text-xs text-center p-6\'>Coloca aquí img/figura1.png</p>'">
+                        <button class="expand-btn" title="Ampliar imagen">＋</button>
+                    </div>
+                    <p class="text-xs text-slate-500 text-center -mt-2">Figura 1. Proceso de construcción de una distribución de frecuencias.</p>
+                    <p class="text-xs text-slate-400 text-center -mt-3 italic">Nota. Elaboración propia.</p>
+
+                    <div class="space-y-3">
+                        <div class="timeline-step">
+                            <div class="timeline-dot bg-green-700 text-white">1</div>
+                            <div class="bg-white rounded-xl p-4 border border-slate-200 ml-2">
+                                <p class="font-bold text-slate-700">Calcular el rango</p>
+                                <p class="text-sm font-mono mt-1">R = valor máximo − valor mínimo</p>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="timeline-dot bg-green-700 text-white">2</div>
+                            <div class="bg-white rounded-xl p-4 border border-slate-200 ml-2">
+                                <p class="font-bold text-slate-700">Determinar el número de clases (k) — Regla de Sturges</p>
+                                <p class="text-sm font-mono mt-1">k = 1 + 3.322 · log₁₀(n)</p>
+                                <p class="text-xs text-slate-500 mt-1">Se redondea al entero más cercano. En la práctica se usan entre 5 y 15 clases.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="timeline-dot bg-green-700 text-white">3</div>
+                            <div class="bg-white rounded-xl p-4 border border-slate-200 ml-2">
+                                <p class="font-bold text-slate-700">Calcular la amplitud de clase</p>
+                                <p class="text-sm font-mono mt-1">A = R / k</p>
+                                <p class="text-xs text-slate-500 mt-1">Se redondea hacia arriba para garantizar que todos los datos queden incluidos.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="timeline-dot bg-green-700 text-white">4</div>
+                            <div class="bg-white rounded-xl p-4 border border-slate-200 ml-2">
+                                <p class="font-bold text-slate-700">Construir los intervalos</p>
+                                <p class="text-sm mt-1">Partiendo del valor mínimo, cada uno de amplitud A. La convención usual es intervalo cerrado a la izquierda y abierto a la derecha: [Lᵢ, Lₛ).</p>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="timeline-dot bg-green-700 text-white">5</div>
+                            <div class="bg-white rounded-xl p-4 border border-slate-200 ml-2">
+                                <p class="font-bold text-slate-700">Calcular la marca de clase</p>
+                                <p class="text-sm font-mono mt-1">xᵢ = (Lᵢ + Lₛ) / 2</p>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="timeline-dot bg-green-700 text-white">6</div>
+                            <div class="bg-white rounded-xl p-4 border border-slate-200 ml-2">
+                                <p class="font-bold text-slate-700">Contar</p>
+                                <p class="text-sm mt-1">Se cuentan las frecuencias de cada intervalo y se completa la tabla.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB2: EJEMPLO -->
+                <div id="tab2-ejemplo" class="sub-tab2 hidden space-y-5 text-slate-700">
+                    <div class="card-institucional p-5">
+                        <h4 class="font-bold text-green-800 mb-2">Ejemplo — Tiempos de respuesta de un servidor</h4>
+                        <p class="text-sm mb-3">Se midieron los tiempos de respuesta (en milisegundos) de n = 50 peticiones a una API. El valor mínimo fue 120 ms y el máximo 480 ms.</p>
+                        <div class="bg-slate-50 rounded-lg p-3 border border-slate-200 text-sm space-y-1 mb-3">
+                            <p><strong>Paso 1:</strong> R = 480 − 120 = 360 ms</p>
+                            <p><strong>Paso 2:</strong> k = 1 + 3.322 · log₁₀(50) = 1 + 3.322 × 1.699 = 6.64 ≈ 7 clases</p>
+                            <p><strong>Paso 3:</strong> A = 360 / 7 = 51.4 ≈ 52 ms</p>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-xs sm:text-sm border-collapse">
+                                <thead><tr class="bg-green-800 text-white"><th class="p-2">Intervalo (ms)</th><th class="p-2">xᵢ</th><th class="p-2">fᵢ</th><th class="p-2">hᵢ</th><th class="p-2">Fᵢ</th><th class="p-2">Hᵢ</th></tr></thead>
+                                <tbody>
+                                    <tr class="bg-slate-50 text-center"><td class="p-2">[120, 172)</td><td class="p-2">146</td><td class="p-2">6</td><td class="p-2">0.12</td><td class="p-2">6</td><td class="p-2">0.12</td></tr>
+                                    <tr class="bg-white text-center"><td class="p-2">[172, 224)</td><td class="p-2">198</td><td class="p-2">9</td><td class="p-2">0.18</td><td class="p-2">15</td><td class="p-2">0.30</td></tr>
+                                    <tr class="bg-slate-50 text-center"><td class="p-2">[224, 276)</td><td class="p-2">250</td><td class="p-2">14</td><td class="p-2">0.28</td><td class="p-2">29</td><td class="p-2">0.58</td></tr>
+                                    <tr class="bg-white text-center"><td class="p-2">[276, 328)</td><td class="p-2">302</td><td class="p-2">10</td><td class="p-2">0.20</td><td class="p-2">39</td><td class="p-2">0.78</td></tr>
+                                    <tr class="bg-slate-50 text-center"><td class="p-2">[328, 380)</td><td class="p-2">354</td><td class="p-2">6</td><td class="p-2">0.12</td><td class="p-2">45</td><td class="p-2">0.90</td></tr>
+                                    <tr class="bg-white text-center"><td class="p-2">[380, 432)</td><td class="p-2">406</td><td class="p-2">3</td><td class="p-2">0.06</td><td class="p-2">48</td><td class="p-2">0.96</td></tr>
+                                    <tr class="bg-slate-50 text-center"><td class="p-2">[432, 484)</td><td class="p-2">458</td><td class="p-2">2</td><td class="p-2">0.04</td><td class="p-2">50</td><td class="p-2">1.00</td></tr>
+                                    <tr class="bg-green-100 font-bold text-center"><td class="p-2">Total</td><td class="p-2">—</td><td class="p-2">50</td><td class="p-2">1.00</td><td class="p-2">—</td><td class="p-2">—</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mt-3 bg-green-50 rounded-lg p-3 text-green-800 text-sm space-y-1">
+                            <p>El intervalo con más peticiones es [224, 276): el 28% de las respuestas tardó entre 224 y 276 ms.</p>
+                            <p>F₄ = 39 → el 78% de las peticiones respondió en menos de 328 ms.</p>
+                            <p>Solo el 10% de las peticiones (últimas dos clases) superó los 380 ms, dato clave si el acuerdo de servicio (SLA) exige responder en menos de 400 ms.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ TAB 3: GRÁFICOS ESTADÍSTICOS ══ -->
+            <div id="tab-graficos" class="main-tab-content hidden bg-white border-2 border-green-300 rounded-xl p-5">
+                <div class="flex gap-2 mb-5 border-b border-slate-200 flex-wrap">
+                    <button onclick="showSub('tab3','cualitativas')" id="tab3-tab-cualitativas" class="sub-tab-tab3 px-4 py-2 rounded-t-lg text-sm font-semibold border-b-2 border-green-700 text-green-800 bg-green-50">Para cualitativas</button>
+                    <button onclick="showSub('tab3','cuantitativas')" id="tab3-tab-cuantitativas" class="sub-tab-tab3 px-4 py-2 rounded-t-lg text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-green-700">Para cuantitativas</button>
+                </div>
+
+                <!-- TAB3: CUALITATIVAS -->
+                <div id="tab3-cualitativas" class="sub-tab3 space-y-5 text-slate-700">
+                    <p>Un gráfico estadístico es la representación visual de una distribución de frecuencias. Su función es comunicar patrones, comparaciones y tendencias de forma inmediata, aprovechando que el cerebro procesa imágenes mucho más rápido que tablas de números. La regla de oro es que el tipo de gráfico depende del tipo de variable.</p>
+
+                    <div class="image-container">
+                        <img src="img/figura2.png" alt="Representación gráfica de la distribución porcentual de los tipos de error" loading="lazy"
+                             onerror="this.parentElement.innerHTML='<p class=\'text-slate-400 text-xs text-center p-6\'>Coloca aquí img/figura2.png</p>'">
+                        <button class="expand-btn" title="Ampliar imagen">＋</button>
+                    </div>
+                    <p class="text-xs text-slate-500 text-center -mt-2">Figura 2. Representación gráfica de la distribución porcentual de los tipos de error.</p>
+                    <p class="text-xs text-slate-400 text-center -mt-3 italic">Nota. Elaboración propia.</p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="card-institucional p-4">
+                            <h4 class="font-bold text-green-800 mb-2">Gráfico de barras</h4>
+                            <p class="text-sm text-slate-600">Cada categoría se representa con una barra separada cuya altura es su frecuencia (absoluta o porcentual). Las barras van separadas porque las categorías son discretas. Es el gráfico más versátil para variables nominales y ordinales.</p>
+                        </div>
+                        <div class="card-institucional-alt p-4">
+                            <h4 class="font-bold text-blue-800 mb-2">Gráfico circular (torta)</h4>
+                            <p class="text-sm text-slate-600 mb-2">Cada categoría es un sector cuyo ángulo es proporcional a su frecuencia relativa:</p>
+                            <p class="text-sm font-mono bg-slate-50 rounded p-2 border border-slate-200">Ángulo del sector = hᵢ × 360°</p>
+                            <p class="text-xs text-slate-500 mt-2">Se recomienda solo cuando hay pocas categorías (máximo 5 o 6) y se quiere resaltar la composición del total.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB3: CUANTITATIVAS -->
+                <div id="tab3-cuantitativas" class="sub-tab3 hidden space-y-5 text-slate-700">
+                    <div class="image-container">
+                        <img src="img/figura3.png" alt="Histograma, polígono de frecuencias y ojiva de los tiempos de respuesta" loading="lazy"
+                             onerror="this.parentElement.innerHTML='<p class=\'text-slate-400 text-xs text-center p-6\'>Coloca aquí img/figura3.png</p>'">
+                        <button class="expand-btn" title="Ampliar imagen">＋</button>
+                    </div>
+                    <p class="text-xs text-slate-500 text-center -mt-2">Figura 3. Representación gráfica de la distribución de los tiempos de respuesta mediante histograma, polígono de frecuencias y ojiva.</p>
+                    <p class="text-xs text-slate-400 text-center -mt-3 italic">Nota. Elaboración propia.</p>
+
+                    <div class="space-y-3">
+                        <div class="card-institucional p-4">
+                            <h4 class="font-bold text-green-800 mb-2">Histograma</h4>
+                            <p class="text-sm text-slate-600">Representa datos agrupados en intervalos. Las barras van pegadas, sin separación, porque la variable es continua. El eje horizontal muestra los intervalos y el vertical las frecuencias.</p>
+                        </div>
+                        <div class="card-institucional-alt p-4">
+                            <h4 class="font-bold text-blue-800 mb-2">Polígono de frecuencias</h4>
+                            <p class="text-sm text-slate-600">Se construye uniendo con segmentos de recta los puntos (marca de clase, frecuencia). Permite ver la forma de la distribución y comparar dos distribuciones superpuestas.</p>
+                        </div>
+                        <div class="card-institucional p-4">
+                            <h4 class="font-bold text-green-800 mb-2">Ojiva (polígono de frecuencias acumuladas)</h4>
+                            <p class="text-sm text-slate-600">Grafica los puntos (límite superior del intervalo, frecuencia acumulada). Sirve para responder gráficamente preguntas del tipo "¿qué porcentaje de los datos está por debajo de X?".</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ TAB 4: SELECCIÓN DE GRÁFICOS ══ -->
+            <div id="tab-decision" class="main-tab-content hidden bg-white border-2 border-green-300 rounded-xl p-5">
+                <div class="flex gap-2 mb-5 border-b border-slate-200 flex-wrap">
+                    <button onclick="showSub('tab4','tabla')" id="tab4-tab-tabla" class="sub-tab-tab4 px-4 py-2 rounded-t-lg text-sm font-semibold border-b-2 border-green-700 text-green-800 bg-green-50">Tabla de decisión</button>
+                    <button onclick="showSub('tab4','juego')" id="tab4-tab-juego" class="sub-tab-tab4 px-4 py-2 rounded-t-lg text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-green-700">Juego: elige el gráfico</button>
+                </div>
+
+                <!-- TAB4: TABLA -->
+                <div id="tab4-tabla" class="sub-tab4 space-y-5 text-slate-700">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm border-collapse">
+                            <thead><tr class="bg-green-800 text-white"><th class="p-3 text-left rounded-tl-lg">Tipo de variable</th><th class="p-3 text-left">Gráfico recomendado</th><th class="p-3 text-left rounded-tr-lg">Barras</th></tr></thead>
+                            <tbody>
+                                <tr class="bg-slate-50 border-b border-slate-200"><td class="p-3 font-semibold">Cualitativa nominal</td><td class="p-3">Barras o circular</td><td class="p-3">Separadas</td></tr>
+                                <tr class="bg-white border-b border-slate-200"><td class="p-3 font-semibold">Cualitativa ordinal</td><td class="p-3">Barras, en el orden natural</td><td class="p-3">Separadas</td></tr>
+                                <tr class="bg-slate-50 border-b border-slate-200"><td class="p-3 font-semibold">Cuantitativa discreta (pocos valores)</td><td class="p-3">Barras o bastones</td><td class="p-3">Separadas</td></tr>
+                                <tr class="bg-white"><td class="p-3 font-semibold">Cuantitativa continua (agrupada)</td><td class="p-3">Histograma, polígono, ojiva</td><td class="p-3">Pegadas</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="bg-amber-50 border-l-4 border-amber-600 rounded-r-xl p-5">
+                        <h4 class="font-bold text-amber-800 mb-2">Errores comunes que se deben evitar</h4>
+                        <div class="space-y-1 text-sm">
+                            <p>Usar gráfico circular con muchas categorías: se vuelve ilegible.</p>
+                            <p>Cortar el eje vertical, no empezar en cero, en gráficos de barras: exagera visualmente las diferencias y puede inducir a conclusiones engañosas.</p>
+                            <p>Usar histograma para variables nominales o gráficos de torta para variables continuas.</p>
+                            <p>Añadir efectos 3D y decoraciones que distorsionan las proporciones reales.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-xl p-5 border-l-4 border-slate-400">
+                        <h4 class="font-bold text-slate-700 mb-2">Aplicaciones en desarrollo de software</h4>
+                        <div class="space-y-1 text-sm">
+                            <p><strong>Dashboards de monitoreo:</strong> herramientas como Grafana o Kibana construyen histogramas de latencia y gráficos de barras de errores por servicio en tiempo real.</p>
+                            <p><strong>Informes de calidad (QA):</strong> los reportes de pruebas resumen resultados con tablas de frecuencia y gráficos de barras de defectos por severidad.</p>
+                            <p><strong>Analítica de producto:</strong> la distribución de sesiones por franja horaria o por tipo de dispositivo orienta decisiones de diseño e infraestructura.</p>
+                            <p><strong>Hojas de cálculo y librerías:</strong> Excel, Python (matplotlib, seaborn) y R (ggplot2) automatizan la construcción de tablas y gráficos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB4: JUEGO -->
+                <div id="tab4-juego" class="sub-tab4 hidden">
+                    <div class="bg-white rounded-xl p-5 border-2 border-green-300">
+                        <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+                            <h4 class="font-bold text-slate-700 text-lg">🎮 Juego: elige el gráfico correcto</h4>
+                            <span id="game-score" class="score-chip">Puntaje: 0 / 0</span>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-4">Te mostraré una variable real de desarrollo de software. Responde las preguntas paso a paso para descubrir qué gráfico es el más adecuado.</p>
+
+                        <div class="game-progress-track mb-5">
+                            <div id="game-progress-fill" class="game-progress-fill" style="width:0%"></div>
+                        </div>
+
+                        <div id="game-var-card" class="bg-green-50 border-2 border-green-600 rounded-xl p-4 mb-5 text-center">
+                            <p class="text-xs text-green-700 font-semibold uppercase tracking-wide">Variable a graficar</p>
+                            <p id="game-var-name" class="text-lg font-bold text-green-900 mt-1"></p>
+                        </div>
+
+                        <div id="game-question-container"></div>
+
+                        <div id="game-final-result" class="hidden mt-4"></div>
+
+                        <div class="flex gap-3 mt-5">
+                            <button id="game-next-btn" class="hidden bg-green-700 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-800 transition-colors">Siguiente caso →</button>
+                            <button id="game-restart-btn" class="bg-slate-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-slate-600 transition-colors">Reiniciar juego</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ══ ACTIVIDADES ══ -->
+        <div id="actividades" class="content-pane">
+            <h2 class="text-2xl sm:text-3xl font-bold text-green-800 mb-6">Actividades prácticas</h2>
+
+            <!-- Actividad 1: Drag & Drop -->
+            <div class="bg-white border-l-4 border-green-700 rounded-lg shadow-sm p-6 mb-8">
+                <h3 class="text-xl font-bold text-slate-700 mb-2">Actividad 1. Asocia la variable con el gráfico adecuado — arrastra y suelta</h3>
+                <p class="text-slate-600 mb-4">Arrastra cada variable a la categoría de gráfico correcta:</p>
+
+                <div id="drag-bank" class="flex flex-wrap gap-2 p-3 bg-slate-50 border-2 border-dashed border-slate-300 rounded-xl mb-5 min-h-12">
+                    <div class="drag-item bg-slate-100 text-slate-700 border border-slate-300 rounded-full px-3 py-1 text-sm font-semibold select-none" draggable="true" data-var="var-navegador">Navegador web usado</div>
+                    <div class="drag-item bg-slate-100 text-slate-700 border border-slate-300 rounded-full px-3 py-1 text-sm font-semibold select-none" draggable="true" data-var="var-departamento">Departamento de la empresa</div>
+                    <div class="drag-item bg-slate-100 text-slate-700 border border-slate-300 rounded-full px-3 py-1 text-sm font-semibold select-none" draggable="true" data-var="var-severidad">Severidad del bug</div>
+                    <div class="drag-item bg-slate-100 text-slate-700 border border-slate-300 rounded-full px-3 py-1 text-sm font-semibold select-none" draggable="true" data-var="var-prioridad">Prioridad del ticket</div>
+                    <div class="drag-item bg-slate-100 text-slate-700 border border-slate-300 rounded-full px-3 py-1 text-sm font-semibold select-none" draggable="true" data-var="var-latencia">Latencia agrupada (ms)</div>
+                    <div class="drag-item bg-slate-100 text-slate-700 border border-slate-300 rounded-full px-3 py-1 text-sm font-semibold select-none" draggable="true" data-var="var-tamano-archivo">Tamaño de archivo agrupado (MB)</div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+                    <div>
+                        <p class="font-bold text-slate-700 mb-1 text-sm">Barras o circular (sin orden)</p>
+                        <div id="zone-barras-circular" class="drop-zone border-2 border-dashed border-slate-300 rounded-xl p-3 bg-slate-50 min-h-16 flex flex-wrap gap-2" data-label="Barras o circular"></div>
+                    </div>
+                    <div>
+                        <p class="font-bold text-slate-700 mb-1 text-sm">Barras respetando orden</p>
+                        <div id="zone-barras-orden" class="drop-zone border-2 border-dashed border-slate-300 rounded-xl p-3 bg-slate-50 min-h-16 flex flex-wrap gap-2" data-label="Barras con orden"></div>
+                    </div>
+                    <div>
+                        <p class="font-bold text-slate-700 mb-1 text-sm">Histograma, polígono u ojiva</p>
+                        <div id="zone-histograma" class="drop-zone border-2 border-dashed border-slate-300 rounded-xl p-3 bg-slate-50 min-h-16 flex flex-wrap gap-2" data-label="Histograma/polígono/ojiva"></div>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-500 mb-3">Si el arrastre no funciona en tu dispositivo móvil, intenta también en un computador.</p>
+                <div class="flex gap-4">
+                    <button id="check-drag-btn" class="bg-green-700 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-800 transition-colors">Verificar</button>
+                    <button id="reset-drag-btn" class="bg-slate-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-slate-600 transition-colors">Reiniciar actividad</button>
+                </div>
+                <div id="drag-feedback" class="mt-4 hidden bg-slate-50 rounded-lg p-4 border border-slate-200 space-y-1"></div>
+            </div>
+
+            <!-- Actividad 2: Calculadora de frecuencias -->
+            <div class="bg-white border-l-4 border-blue-700 rounded-lg shadow-sm p-6 mb-8">
+                <h3 class="text-xl font-bold text-slate-700 mb-2">Actividad 2. Calculadora de tabla de frecuencias</h3>
+                <p class="text-slate-600 mb-4">Ingresa el nombre y la frecuencia absoluta de hasta 4 categorías; la calculadora obtiene hᵢ, %ᵢ y Fᵢ automáticamente:</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+                    <div class="flex gap-2 items-center">
+                        <input type="text" placeholder="Categoría 1" class="frec-nombre border border-slate-300 rounded-lg px-2 py-1.5 text-sm flex-1">
+                        <input type="number" placeholder="fᵢ" class="frec-input border border-slate-300 rounded-lg px-2 py-1.5 text-sm w-20">
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <input type="text" placeholder="Categoría 2" class="frec-nombre border border-slate-300 rounded-lg px-2 py-1.5 text-sm flex-1">
+                        <input type="number" placeholder="fᵢ" class="frec-input border border-slate-300 rounded-lg px-2 py-1.5 text-sm w-20">
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <input type="text" placeholder="Categoría 3" class="frec-nombre border border-slate-300 rounded-lg px-2 py-1.5 text-sm flex-1">
+                        <input type="number" placeholder="fᵢ" class="frec-input border border-slate-300 rounded-lg px-2 py-1.5 text-sm w-20">
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <input type="text" placeholder="Categoría 4" class="frec-nombre border border-slate-300 rounded-lg px-2 py-1.5 text-sm flex-1">
+                        <input type="number" placeholder="fᵢ" class="frec-input border border-slate-300 rounded-lg px-2 py-1.5 text-sm w-20">
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <button id="calc-frec-btn" class="bg-green-700 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-800 transition-colors">Calcular tabla</button>
+                    <button id="reset-frec-btn" class="bg-slate-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-slate-600 transition-colors">Reiniciar</button>
+                </div>
+                <div id="frec-resultado" class="mt-4 hidden overflow-x-auto"></div>
+            </div>
+
+            <!-- Actividad 3: VF -->
+            <div class="bg-white border-l-4 border-green-700 rounded-lg shadow-sm p-6 mb-8">
+                <h3 class="text-xl font-bold text-slate-700 mb-2">Actividad 3. Verdadero o falso</h3>
+                <p class="text-slate-600 mb-5">Escribe V o F en cada casilla:</p>
+                <div class="space-y-4">
+                    <div class="flex items-start gap-4 p-3 bg-slate-50 rounded-lg border border-slate-200">
+                        <input type="text" id="vf1" maxlength="1" placeholder="?" class="vf-input w-12 h-12 text-center border-2 border-slate-300 rounded-lg font-bold text-lg bg-white uppercase flex-shrink-0">
+                        <p class="text-slate-700 pt-2">Las frecuencias acumuladas se pueden calcular para cualquier variable, incluidas las nominales.</p>
+                    </div>
+                    <div class="flex items-start gap-4 p-3 bg-slate-50 rounded-lg border border-slate-200">
+                        <input type="text" id="vf2" maxlength="1" placeholder="?" class="vf-input w-12 h-12 text-center border-2 border-slate-300 rounded-lg font-bold text-lg bg-white uppercase flex-shrink-0">
+                        <p class="text-slate-700 pt-2">La suma de todas las frecuencias relativas (hᵢ) de una tabla debe ser igual a 1.</p>
+                    </div>
+                    <div class="flex items-start gap-4 p-3 bg-slate-50 rounded-lg border border-slate-200">
+                        <input type="text" id="vf3" maxlength="1" placeholder="?" class="vf-input w-12 h-12 text-center border-2 border-slate-300 rounded-lg font-bold text-lg bg-white uppercase flex-shrink-0">
+                        <p class="text-slate-700 pt-2">En un histograma, las barras van pegadas porque la variable representada es continua.</p>
+                    </div>
+                    <div class="flex items-start gap-4 p-3 bg-slate-50 rounded-lg border border-slate-200">
+                        <input type="text" id="vf4" maxlength="1" placeholder="?" class="vf-input w-12 h-12 text-center border-2 border-slate-300 rounded-lg font-bold text-lg bg-white uppercase flex-shrink-0">
+                        <p class="text-slate-700 pt-2">Cortar el eje vertical en un gráfico de barras es una buena práctica para resaltar diferencias importantes.</p>
+                    </div>
+                    <div class="flex items-start gap-4 p-3 bg-slate-50 rounded-lg border border-slate-200">
+                        <input type="text" id="vf5" maxlength="1" placeholder="?" class="vf-input w-12 h-12 text-center border-2 border-slate-300 rounded-lg font-bold text-lg bg-white uppercase flex-shrink-0">
+                        <p class="text-slate-700 pt-2">La regla de Sturges se usa para determinar el número de clases al agrupar datos continuos.</p>
+                    </div>
+                    <div class="flex items-start gap-4 p-3 bg-slate-50 rounded-lg border border-slate-200">
+                        <input type="text" id="vf6" maxlength="1" placeholder="?" class="vf-input w-12 h-12 text-center border-2 border-slate-300 rounded-lg font-bold text-lg bg-white uppercase flex-shrink-0">
+                        <p class="text-slate-700 pt-2">Un gráfico circular es recomendable cuando hay más de diez categorías distintas.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 mt-5">
+                    <button id="check-vf-btn" class="bg-green-700 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-800 transition-colors">Verificar</button>
+                    <button id="reset-vf-btn" class="bg-slate-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-slate-600 transition-colors">Reiniciar actividad</button>
+                </div>
+                <div id="vf-result" class="mt-4 font-medium"></div>
+            </div>
+
+            <!-- Actividad 4: Análisis de caso -->
+            <div class="bg-white border-l-4 border-slate-400 rounded-lg shadow-sm p-6">
+                <h3 class="text-xl font-bold text-slate-700 mb-2">Actividad 4. Análisis crítico — para tu cuaderno</h3>
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 mb-4 text-sm text-slate-700">
+                    <p class="mb-2">Un gerente presenta el siguiente informe sobre tiempos de carga de dos versiones de una página web, medidos en 60 visitas cada una:</p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs border-collapse">
+                            <thead><tr class="bg-slate-200"><th class="p-2">Intervalo (s)</th><th class="p-2">Versión A: fᵢ</th><th class="p-2">Versión B: fᵢ</th></tr></thead>
+                            <tbody>
+                                <tr class="text-center"><td class="p-2">[1.0, 2.0)</td><td class="p-2">8</td><td class="p-2">22</td></tr>
+                                <tr class="text-center"><td class="p-2">[2.0, 3.0)</td><td class="p-2">15</td><td class="p-2">25</td></tr>
+                                <tr class="text-center"><td class="p-2">[3.0, 4.0)</td><td class="p-2">20</td><td class="p-2">8</td></tr>
+                                <tr class="text-center"><td class="p-2">[4.0, 5.0)</td><td class="p-2">12</td><td class="p-2">3</td></tr>
+                                <tr class="text-center"><td class="p-2">[5.0, 6.0)</td><td class="p-2">5</td><td class="p-2">2</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-200"><p class="font-bold text-slate-700 mb-1">1.</p><p class="text-slate-700 text-sm">Calcula las frecuencias relativas y acumuladas de ambas versiones.</p></div>
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-200"><p class="font-bold text-slate-700 mb-1">2.</p><p class="text-slate-700 text-sm">¿Qué porcentaje de visitas carga en menos de 3 segundos en cada versión? Si el estándar exige al menos 70% de visitas por debajo de 3 segundos, ¿cuál versión lo cumple?</p></div>
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-200"><p class="font-bold text-slate-700 mb-1">3.</p><p class="text-slate-700 text-sm">Construye en una misma figura los dos polígonos de frecuencia superpuestos y compara la forma de ambas distribuciones.</p></div>
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-200"><p class="font-bold text-slate-700 mb-1">4.</p><p class="text-slate-700 text-sm">El gerente quiere presentar solo el gráfico de la Versión B cortando el eje vertical para que "se vea mejor". Explica por qué esta práctica es engañosa.</p></div>
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-200"><p class="font-bold text-slate-700 mb-1">5.</p><p class="text-slate-700 text-sm">Redacta una conclusión técnica de 3 a 4 líneas recomendando una versión, sustentada en las frecuencias calculadas.</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══ EVALUACIÓN ══ -->
+        <div id="evaluacion" class="content-pane">
+            <h2 class="text-2xl sm:text-3xl font-bold text-green-800 mb-6">Evaluación</h2>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <p class="text-slate-600 mb-6">Comprueba lo que has aprendido. Selecciona la respuesta correcta para cada pregunta.</p>
+                <div id="quiz-container"></div>
+                <div class="flex gap-4 mt-6">
+                    <button id="submit-quiz-btn" class="bg-green-700 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-800 transition-colors">Finalizar evaluación</button>
+                    <button id="reset-quiz-btn" class="bg-slate-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-slate-600 transition-colors hidden">Reiniciar evaluación</button>
+                </div>
+                <div id="quiz-result" class="mt-4 text-lg font-bold"></div>
+            </div>
+        </div>
+
+        <!-- ══ RECURSOS ══ -->
+        <div id="recursos" class="content-pane">
+            <h2 class="text-2xl sm:text-3xl font-bold text-green-800 mb-6">Recursos para profundizar</h2>
+            <p class="text-slate-700 leading-relaxed mb-6">Para ampliar tu conocimiento sobre tablas de frecuencia y visualización de datos:</p>
+            <ul class="space-y-4">
+                <li class="bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-700 flex flex-col sm:flex-row sm:items-center justify-between">
+                    <div>
+                        <h3 class="font-bold text-green-800 text-lg">Video — Medidas de tendencia central: Media, Mediana y Moda</h3>
+                        <p class="text-sm text-slate-500 mb-2">Video educativo complementario sobre estadística descriptiva</p>
+                        <a href="https://www.youtube.com/results?search_query=medidas+de+tendencia+central+media+mediana+moda" target="_blank" class="underline text-slate-700 hover:text-green-700 text-sm">Ir al recurso</a>
+                    </div>
+                    <div class="mt-4 sm:mt-0 sm:ml-6 flex-shrink-0 flex flex-col items-center">
+                        <img src="img/Qr1.png" alt="QR Video" class="w-16 h-16 object-contain border border-green-300 rounded" loading="lazy"
+                             onerror="this.style.display='none'">
+                        <span class="text-xs text-slate-400 mt-1">Escanea el QR</span>
+                    </div>
+                </li>
+                <li class="bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-700 flex flex-col sm:flex-row sm:items-center justify-between">
+                    <div>
+                        <h3 class="font-bold text-green-800 text-lg">Actividades de Estadística descriptiva — Wordwall</h3>
+                        <p class="text-sm text-slate-500 mb-2">Recurso interactivo con ejercicios de tablas de frecuencia y gráficos</p>
+                        <a href="https://wordwall.net/es" target="_blank" class="underline text-slate-700 hover:text-green-700 text-sm">Ir al recurso</a>
+                    </div>
+                    <div class="mt-4 sm:mt-0 sm:ml-6 flex-shrink-0 flex flex-col items-center">
+                        <img src="img/Qr2.png" alt="QR Wordwall" class="w-16 h-16 object-contain border border-green-300 rounded" loading="lazy"
+                             onerror="this.style.display='none'">
+                        <span class="text-xs text-slate-400 mt-1">Escanea el QR</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ══ BIBLIOGRAFÍA ══ -->
+        <div id="bibliografia" class="content-pane">
+            <h2 class="text-2xl sm:text-3xl font-bold text-green-800 mb-6">Bibliografía</h2>
+            <div class="space-y-4">
+                <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-700"><span class="block text-slate-700">Cadena Lozano, J. B. (2024). <em>Estadística descriptiva y probabilidad para los negocios</em>. Editorial CESA.</span></div>
+                <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-700"><span class="block text-slate-700">Lind, D. A., Marchal, W. G., y Wathen, S. A. (2019). <em>Estadística aplicada a los negocios y la economía</em> (17.ª ed.). McGraw-Hill.</span></div>
+                <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-700"><span class="block text-slate-700">Triola, M. F. (2018). <em>Estadística</em> (12.ª ed.). Pearson.</span></div>
+                <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-700"><span class="block text-slate-700">Walpole, R. E., Myers, R. H., Myers, S. L., y Ye, K. (2012). <em>Probabilidad y estadística para ingeniería y ciencias</em> (9.ª ed.). Pearson Educación.</span></div>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<!-- FOOTER FIJO EN TODAS LAS PÁGINAS -->
+<footer class="w-full py-6 border-t-2 border-slate-200 text-center bg-white md:ml-64 md:w-[calc(100%-16rem)]">
+    <p class="text-slate-600 font-medium">Creado por:</p>
+    <p class="text-green-800 font-bold text-lg">Centro de Innovación en TIC para el apoyo de la Docencia CINTIA</p>
+    <p class="text-slate-500 text-sm">Universidad de Córdoba</p>
+</footer>
+
+</div>
+
+<!-- Modal -->
+<div id="imageModal" class="image-modal">
+    <div class="modal-content">
+        <img id="modalImage" src="" alt="Imagen ampliada">
+        <button class="close-modal" id="closeModal">&times;</button>
+    </div>
+</div>
+
+<script src="js/speech.js"></script>
+<script src="js/modal.js"></script>
+<script src="js/activities.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/game.js"></script>
+<script src="js/navigation.js"></script>
+<script>
+function showMainTab(id) {
+    document.querySelectorAll('.main-tab-content').forEach(el => el.classList.add('hidden'));
+    document.querySelectorAll('.main-tab-btn').forEach(btn => {
+        btn.classList.remove('bg-green-700', 'text-white', 'border-green-700');
+        btn.classList.add('bg-white', 'text-slate-600', 'border-green-200');
+    });
+    document.getElementById(id).classList.remove('hidden');
+    const btn = document.getElementById('main-tab-' + id.replace('tab-', ''));
+    btn.classList.add('bg-green-700', 'text-white', 'border-green-700');
+    btn.classList.remove('bg-white', 'text-slate-600', 'border-green-200');
+}
+
+function showSub(prefix, tab) {
+    document.querySelectorAll(`.sub-${prefix}`).forEach(el => el.classList.add('hidden'));
+    document.querySelectorAll(`.sub-tab-${prefix}`).forEach(btn => {
+        btn.classList.remove('border-green-700', 'text-green-800', 'bg-green-50');
+        btn.classList.add('border-transparent', 'text-slate-500');
+    });
+    document.getElementById(`${prefix}-${tab}`).classList.remove('hidden');
+    const ab = document.getElementById(`${prefix}-tab-${tab}`);
+    ab.classList.add('border-green-700', 'text-green-800', 'bg-green-50');
+    ab.classList.remove('border-transparent', 'text-slate-500');
+}
+</script>
+<script src="https://elens.ecodestudio.dev/elens.js"></script>
+</body>
+</html>
